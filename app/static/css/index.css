@@ -133,3 +133,9 @@ a{
     box-shadow:-10px 0px 15px #2C58A6 inset,   /*左边阴影*/
     10px 0px 15px #2C58A6 inset;  /*右边阴影*/
 }
+
+
+.sel {
+float:right;position:relative;
+border:0
+}

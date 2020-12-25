@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <title>bank_consume</title>
+    <script src="{{ url_for('static', filename='js/jquery-2.2.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/rem.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/echarts.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</head>
+<body>
+    <div class="t_container">
+        <header class="t_h_bg">
+            <span>消费大数据</span>
+        </header>
+        <main class="t_main">
+            <div class="t_box">
+                <header class="t_title">
+                    <span>总消费额</span>
+                    <span class="t_number"></span>
+                </header>
+                <div id="chart_1" class="echart" style="width: 100%; height: 3rem;"></div>
+            </div>
+            <div class="t_box">
+                <header class="t_title">
+                    <span>人均消费额</span>
+                </header>
+                <div id="chart_2" class="echart" style="width: 100%; height: 3rem;"></div>
+            </div>
+            <div class="t_box">
+                <header class="t_title">
+                    <span>总消费性别比</span>
+                </header>
+                <div id="chart_3" class="echart" style="width: 100%; height: 3rem;"></div>
+            </div>
+            <div class="t_box">
+                <header class="t_title">
+                    <span>各项消费性别比</span>
+                </header>
+                <div id="chart_4" class="echart" style="width: 100%; height: 3rem;">
+                    
+               <div class="sel"> <select id="select">
+    <option value="餐饮">餐饮</option>
+    <option value="交通">交通</option>
+    <option value="娱乐">娱乐</option>
+    <option value="服装">服装</option>
+    <option value="家具家电">家具家电</option>
+    <option value="日用">日用</option>
+    <option value="医疗">医疗</option>
+    <option value="电子产品">电子产品</option>
+</select></div>
+                </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
