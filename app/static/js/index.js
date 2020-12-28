@@ -3,6 +3,8 @@ $(function () {
     echart_2();
     echart_3();
     echart_4();
+    echart_5();
+    echart_6();
 
     function echart_1() {
         // 基于准备好的dom，初始化echarts实例
@@ -76,6 +78,7 @@ $(function () {
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('chart_3'));
         // 指定图表的配置项和数据
+
         $.get('http://localhost:5000/total_sex', function (data) {
             var option = {
                 title: {
@@ -101,10 +104,10 @@ $(function () {
                 yAxis: {
                     axisLabel: {    // 坐标轴标签
                         show: true,  // 是否显示
-                        inside: true, // 是否朝内
-                        rotate: 0, // 旋转角度
-                        margin: 2, // 刻度标签与轴线之间的距离
-                        //color: ''  // 默认取轴线的颜色
+                        inside: false, // 是否朝内
+                        rotate: -45, // 旋转角度
+                        margin: 1, // 刻度标签与轴线之间的距离
+                        //color: 'green'  // 默认取轴线的颜色
                     },
                     axisTick: {      // 坐标轴的刻度
                         show: false,    // 是否显示
@@ -186,10 +189,10 @@ $(function () {
                         yAxis: {
                             axisLabel: {    // 坐标轴标签
                                 show: true,  // 是否显示
-                                inside: true, // 是否朝内
-                                rotate: 0, // 旋转角度
-                                margin: 2, // 刻度标签与轴线之间的距离
-                                //color: ''  // 默认取轴线的颜色
+                                inside: false, // 是否朝内
+                                rotate: -45, // 旋转角度
+                                margin: 1, // 刻度标签与轴线之间的距离
+                                //color: 'green'  // 默认取轴线的颜色
                             },
                             axisTick: {      // 坐标轴的刻度
                                 show: false,    // 是否显示
@@ -213,20 +216,156 @@ $(function () {
                     };
                     MYCHART.setOption(option)
                     window.addEventListener("resize", function () {
-                        myChart.resize();
+                        MYCHART.resize();
                     });
+                }
+            },
+            error: function () {
+                alert("不好意思请求失败了");
+            }
+        })
+    }
 
-                    // var option = MYCHART._option;  //e2中感觉这个命名十分奇怪，居然要这样获取，必须先设置才有这个属性
-                    // debugger
-                    // if (result.seriesData == null) {
-                    //     option.series[0].data = [''];
-                    //     option.xAxis[0].data = ['']
-                    // }
-                    // else {
-                    //     option.series[0].data = result.seriesData;
-                    //     option.xAxis[0].data = result.xAxisData;
-                    // }
-                    // MYCHART.setOption(option, true);
+        function echart_5() {
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('chart_5'));
+        // 指定图表的配置项和数据
+        $.get('http://localhost:5000/total_age', function (data) {
+            var option = {
+                title: {
+                    text: ''
+                },
+                tooltip: {},
+                legend: {
+                    data: ['金额']
+                },
+                xAxis: {
+                    data: Object.keys(data),
+                    axisTick: {      // 坐标轴的刻度
+                        show: true,    // 是否显示
+                        inside: true,  // 是否朝内
+                        length: 1,      // 长度
+                        lineStyle: {
+                            color: 'red',  // 默认取轴线的颜色
+                            width: 1,
+                            type: 'solid'
+                        }
+                    },
+                },
+                yAxis: {
+                    axisLabel: {    // 坐标轴标签
+                        show: true,  // 是否显示
+                        inside: false, // 是否朝内
+                        rotate: -45, // 旋转角度
+                        margin: 1, // 刻度标签与轴线之间的距离
+                        //color: 'green'  // 默认取轴线的颜色
+                    },
+                    axisTick: {      // 坐标轴的刻度
+                        show: false,    // 是否显示
+                        inside: true,  // 是否朝内
+                        lineStyle: {
+                            width: 1,
+                            type: 'solid'
+                        }
+                    },
+                },
+                series: [{
+                    name: '金额',
+                    itemStyle: {
+                        color: 'pink'
+                    },
+                    type: 'bar',
+                    barWidth: 20,
+                    barCategoryRadius: '20%',
+                    data: Object.values(data)
+                }]
+            };
+            myChart.setOption(option)
+        }, 'json');
+        window.addEventListener("resize", function () {
+            myChart.resize();
+        });
+    }
+
+
+    $(function () {
+        $('#select1').on('change', function () {
+            var val = $(this).val();
+            loadOption1(val);
+        });
+    });
+
+    var MYCHART1;  //声明一个大写的全局变量，能不用全局的尽量就不要用全局变量
+    function echart_6() {
+        // 基于准备好的dom，初始化echarts实例
+        MYCHART1 = echarts.init(document.getElementById('chart_6'));
+        // 指定图表的配置项和数据
+        // MYCHART.setOption(option, true);
+        loadOption1('餐饮')
+    }
+
+    //ajax 异步加载配置数据项
+    function loadOption1(type_name) {
+        $.ajax({
+            url: 'http://localhost:5000/types_age/' + type_name,
+            type: 'get',
+            dataType: 'json',
+            async: false,
+            success: function (result) {
+                if (result) {
+                    var option = {
+                        title: {
+                            text: ''
+                        },
+                        tooltip: {},
+                        legend: {
+                            data: ['金额']
+                        },
+                        xAxis: {
+                            data: Object.keys(result),
+                            axisTick: {      // 坐标轴的刻度
+                                show: true,    // 是否显示
+                                inside: true,  // 是否朝内
+                                length: 1,      // 长度
+                                lineStyle: {
+                                    color: 'red',  // 默认取轴线的颜色
+                                    width: 1,
+                                    type: 'solid'
+                                }
+                            },
+                        },
+                        yAxis: {
+                            axisLabel: {    // 坐标轴标签
+                                show: true,  // 是否显示
+                                inside: false, // 是否朝内
+                                rotate: -45, // 旋转角度
+                                margin: 1, // 刻度标签与轴线之间的距离
+                                //color: 'green'  // 默认取轴线的颜色
+                            },
+                            axisTick: {      // 坐标轴的刻度
+                                show: false,    // 是否显示
+                                inside: true,  // 是否朝内
+                                lineStyle: {
+                                    width: 1,
+                                    type: 'solid'
+                                }
+                            },
+                        },
+                        series: [{
+                            name: '金额',
+                            itemStyle: {
+                                color: 'pink'
+                            },
+                            type: 'bar',
+                            barWidth: 20,
+                            barCategoryRadius: '20%',
+                            data: Object.values(result)
+                        }]
+                    };
+                    MYCHART1.setOption(option)
+                    window.addEventListener("resize", function () {
+                        MYCHART1.resize();
+                    });
                 }
             },
             error: function () {

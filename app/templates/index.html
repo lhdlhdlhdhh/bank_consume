@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
     <script src="{{ url_for('static', filename='js/echarts.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 </head>
+
 <body>
     <div class="t_container">
         <header class="t_h_bg">
@@ -19,43 +21,70 @@
         <main class="t_main">
             <div class="t_box">
                 <header class="t_title">
-                    <span>总消费额</span>
+                    <span>总消费情况</span>
                     <span class="t_number"></span>
                 </header>
                 <div id="chart_1" class="echart" style="width: 100%; height: 3rem;"></div>
             </div>
             <div class="t_box">
                 <header class="t_title">
-                    <span>人均消费额</span>
+                    <span>人均消费情况</span>
                 </header>
                 <div id="chart_2" class="echart" style="width: 100%; height: 3rem;"></div>
             </div>
             <div class="t_box">
                 <header class="t_title">
-                    <span>总消费性别比</span>
+                    <span>性别总消费情况</span>
                 </header>
                 <div id="chart_3" class="echart" style="width: 100%; height: 3rem;"></div>
             </div>
             <div class="t_box">
                 <header class="t_title">
-                    <span>各项消费性别比</span>
+                    <span>性别各项消费情况</span>
                 </header>
-                <div id="chart_4" class="echart" style="width: 100%; height: 3rem;">
-                    
-               <div class="sel"> <select id="select">
-    <option value="餐饮">餐饮</option>
-    <option value="交通">交通</option>
-    <option value="娱乐">娱乐</option>
-    <option value="服装">服装</option>
-    <option value="家具家电">家具家电</option>
-    <option value="日用">日用</option>
-    <option value="医疗">医疗</option>
-    <option value="电子产品">电子产品</option>
-</select></div>
+                <div class="sel">
+                    <select id="select">
+                        <option value="餐饮">餐饮</option>
+                        <option value="交通">交通</option>
+                        <option value="娱乐">娱乐</option>
+                        <option value="服装">服装</option>
+                        <option value="家具家电">家具家电</option>
+                        <option value="日用">日用</option>
+                        <option value="医疗">医疗</option>
+                        <option value="电子产品">电子产品</option>
+                    </select>
                 </div>
+                <div id="chart_4" class="echart" style="width: 100%; height: 3rem;">
                 </div>
             </div>
-        </main>
+            <div class="t_box">
+                <header class="t_title">
+                    <span>各年龄段总消费情况</span>
+                </header>
+                <div id="chart_5" class="echart" style="width: 100%; height: 3rem;"></div>
+            </div>
+            <div class="t_box">
+                <header class="t_title">
+                    <span>各年龄段各项消费情况</span>
+                </header>
+                <div class="sel">
+                    <select id="select1">
+                        <option value="餐饮">餐饮</option>
+                        <option value="交通">交通</option>
+                        <option value="娱乐">娱乐</option>
+                        <option value="服装">服装</option>
+                        <option value="家具家电">家具家电</option>
+                        <option value="日用">日用</option>
+                        <option value="医疗">医疗</option>
+                        <option value="电子产品">电子产品</option>
+                    </select>
+                </div>
+                <div id="chart_6" class="echart" style="width: 100%; height: 3rem;">
+                </div>
+            </div>
+    </div>
+    </main>
     </div>
 </body>
+
 </html>
